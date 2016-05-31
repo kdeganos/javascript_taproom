@@ -6,12 +6,13 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   inputs: ['kegList'],
   outputs: ['onKegSelect'],
-  directives: [KegComponent]
+  directives: [KegComponent],
   template: `
-    <keg-display *ngFor="#currentKeg of kegList">
-      <h1>Keg List</h1>
-      <h3>{{ keg.name }}</h3>
-    </div>
+  <keg-display *ngFor="#currentKeg of kegList"
+    (click)="kegClicked(currentKeg)"
+    [class.selected]="currentKeg === selectedKeg"
+    [keg]="currentKeg">
+  </keg-display>
   `
 })
 export class KegListComponent {
@@ -21,4 +22,9 @@ export class KegListComponent {
   constructor() {
     this.onKegSelect = new EventEmitter();
   }
+  kegClicked(clickedKeg: Keg): void {
+  console.log('child', clickedKeg);
+  this.selectedKeg = clickedKeg;
+  this.onKegSelect.emit(clickedKeg);
+}
 }

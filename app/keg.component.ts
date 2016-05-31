@@ -10,9 +10,6 @@ import { Keg } from './keg.model';
     </div>
   `
 })
-export class TaskComponent {
-  public task: Task;
-  toggleDone(setState: boolean) {
-    this.task.done = setState;
-  }
+export class KegComponent {
+  public keg: Keg;
 }
