@@ -3,9 +3,14 @@ import { Keg } from './keg.model';
 
 @Component({
   selector: 'my-app',
+  directives: [KegListComponent],
   template: `
     <div class="container">
       <h1>Tap Room</h1>
+      <keg-list
+        [kegList] = "kegs"
+        (onKegSelect) = "kegWasSelected($event)">
+      </keg-list>
     </div>
   `
 })
